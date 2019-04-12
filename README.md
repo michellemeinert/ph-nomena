@@ -14,47 +14,48 @@ Canvas, the player can move up and down to avoid crashing into obstacles.
 
 
 ## Data structure
-#game.js 
+### game.js 
 Game()
-this.canvas
-this.ctx
-this.player
-this.obstacles
-this.death
-loop()
-clearCanvas()
-updateCanvas()
-drawCanvas()
-collisions()
-death()
+ - this.canvas;
+ - this.ctx
+ - this.player
+ - this.obstacles
+ - this.death
+ - loop()
+ - clearCanvas()
+ - updateCanvas()
+ - drawCanvas()
+ - collisions()
+ - death()
 
-#player.js
+### player.js
 Player()
-this.lives
-this.canvas
-this.ctx
-this.speed
-this.size
-this.x
-this.y
-this.direction
-draw()
-update()
-direction()
-lives()
-collision()
+ - this.lives
+ - this.canvas
+ - this.ctx
+ - this.speed
+ - this.size
+ - this.x
+ - this.y
+ - this.direction
+ - draw()
+ - update()
+ - direction()
+ - lives()
+ - collision()
 
-#obstacles.js
-this.minWidth
-this.maxHeight
-this.speed
-this.direction
-this.canvas
-this.ctx
-this.x
-this.y
-draw()
-update()
+### obstacles.js
+Obstacles()
+ - this.minWidth
+ - this.maxHeight
+ - this.speed
+ - this.direction
+ - this.canvas
+ - this.ctx
+ - this.x
+ - this.y
+ - draw()
+ - update()
 
 
 ## States y States Transitions
@@ -66,17 +67,17 @@ update()
 
 ## Task
 
-#Main
+### Main
 building the screens and creating the transitions
 
-#Game
+### Game
 creating loop and animation frame
 and death scenario
 
-#Player
+### Player
 creating movement and checking collisions
 
-#Obstacles
+### Obstacles
 calculating random sizes and positions that maintain the conditions of the main layout 
 
 
