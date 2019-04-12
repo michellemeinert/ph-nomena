@@ -4,11 +4,10 @@ function main() {
 
  function buildScreens (html) {
  main.innerHTML = html;
- return main;
  }
 
 function buildStartScreen () {
-  const startScreen = buildScreens(`
+  buildScreens(`
   <section id="start-screen-section">
   <h1 id="game-name">Phänomena</h1>
   <h2 id="theme-choice">Choose your Vibe</h2>
@@ -26,22 +25,32 @@ function buildStartScreen () {
 }
 
 function buildGameScreen() {
-  console.log('game screen');
- const gameScreen = buildScreens(`
- <section class="game-container">
+  buildScreens(`
+  <section class="game-container">
   <canvas id="canvas"></canvas>
- </section>
+  </section>
  `)
 
- setTimeout(buildGameOverScreen, 3000);
- const gameContainer = document.querySelector('.game-container')
+ setTimeout(buildGameOverScreen, 3000000);
+ const gameContainer = document.querySelector('.game-container');
 
  const width = gameContainer.offsetWidth;
  const height = gameContainer.offsetHeight;
+
+ const canvas = document.querySelector('canvas');
+ canvas.setAttribute('width', width);
+ console.log(canvas);
+ console.log(canvas.width);
+ canvas.setAttribute('height', height);
+
+let game = new Game (canvas);
+game.startLoop();
+ 
+ 
 }
 
 function buildGameOverScreen() {
-  const gameOverScreen = buildScreens (`
+  buildScreens (`
   <section>
    <h1>Game Over</h1>
    <button class="restart-button">You\'ll fail, again</button>
