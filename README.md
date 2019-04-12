@@ -67,30 +67,20 @@ Obstacles()
 
 ## Task
 
-### Main
-- building the screens function
-- build mainScreen
-- build gameScreen
-- build deathScreen
-- addEventListener: creating the transitions
-
-### Game
-- testing transitions with setTimeout (deathScreen)
-- building the loop
-- eventListeners for player movement (up & down)
-- testing random obstacle generator 
-
-
-### Player
-- obj constructor 
-- prototype functions (as seen in my data structure)
-
-
-### Obstacles
-- obj constructor
-- prototype functions (seen in data structure)
-- calculating random sizes & positions for the layout 
-
+- Main: building screen function
+- Main:  build mainScreen
+- Main: build gameScreen
+- Main: build deathScreen
+- Main: addEventListener: creating the transitions
+- Game: testing transitions with setTimeout (deathScreen)
+- Game: building the loop
+- Player: construct obj
+- Player: create movement (direction) function
+- Main: test player movement with eventListener
+- Obstacle: construct obj
+- Obstacle: calculating random sizes & positions for the layout 
+- Player: create and test(!!) the checkCollisions function
+  
 
 ## Links
 ...tbd
