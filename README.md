@@ -72,7 +72,7 @@ Obstacles()
 - Main: build gameScreen
 - Main: build deathScreen
 - Main: addEventListener: creating the transitions
-- Game: testing transitions with setTimeout (deathScreen)
+- Main: testing transitions with setTimeout (deathScreen)
 - Game: building the loop
 - Player: construct obj
 - Player: create movement (direction) function
