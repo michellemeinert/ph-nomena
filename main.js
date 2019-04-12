@@ -5,7 +5,7 @@ function main() {
  function buildScreens (html) {
  main.innerHTML = html;
  return main;
-}
+ }
 
 function buildStartScreen () {
   const startScreen = buildScreens(`
@@ -17,23 +17,39 @@ function buildStartScreen () {
   <button class ="theme3 button">black lodge </button>
   </section>
   `)
+  const theme1Button = document.querySelector('.theme1')
+  const theme2Button = document.querySelector('.theme2')
+  const theme3Button = document.querySelector('.theme3')
+  theme1Button.addEventListener('click', buildGameScreen)
+  theme2Button.addEventListener('click', buildGameScreen)
+  theme3Button.addEventListener('click', buildGameScreen)
 }
-buildStartScreen();
+
 function buildGameScreen() {
   console.log('game screen');
- const gameScreen = buildDom(`
+ const gameScreen = buildScreens(`
  <section class="game-container">
   <canvas id="canvas"></canvas>
  </section>
  `)
+
+ setTimeout(buildGameOverScreen, 3000);
+ const gameContainer = document.querySelector('.game-container')
+
+ const width = gameContainer.offsetWidth;
+ const height = gameContainer.offsetHeight;
 }
+
 function buildGameOverScreen() {
-  const gameOverScreen = buildDom (`
+  const gameOverScreen = buildScreens (`
   <section>
    <h1>Game Over</h1>
-   <button class="restart-button">Restart</button>
+   <button class="restart-button">You\'ll fail, again</button>
   </section>
   `)
+  const resetButton = document.querySelector('.restart-button')
+  resetButton.addEventListener('click', buildGameScreen)
 }
+buildStartScreen();
 }
 main();
