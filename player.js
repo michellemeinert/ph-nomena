@@ -30,27 +30,36 @@ class Player {
   constructor (canvas) {
    this.lives = 5;
    this.size = 30;
+   this.x = canvas.width / 20;
+   this.y = canvas.height / 2
    this.canvas = canvas;
    this.ctx = canvas.getContext('2d');
-   this.speed = 1;
-   this.movement = 0;
+   this.speed = 4;
+   this.direction = 0;
   }
+
   drawPlayer (){
     this.ctx.fillStyle = 'black';
-    this.ctx.fillRect((canvas.width / 2), (canvas.height / 2), this.size, this.size);
+    this.ctx.fillRect(this.x, this.y, this.size, this.size);
   }
-  // updatePosition(){
-   
-  // }
-  // playerMovement(){
-  //  this.movement = this.movement * this.speed;
-  //  console.log(this.movement);
-  // }
-  // updateLives(){
-  //  this.lives -= 1;
-  //  console.log(this.lives)
-  // }
-  // collisionsWithObstacles(){
-  // console.log('collision !!')
-  // }
+
+  playerMovement(){
+    this.y += this.direction * this.speed;
+  }
+
+   updateLives(){
+    this.lives -= 1;
+    console.log(this.lives)
+   }
+
+   collisionsWithObstacles(obstacles){
+   if((this.y - this.size/2 < obstacles.y + obstacles.size/2) || (this.y + this.size/2 > obstacles.y + obstacles.size/2)){
+     return true;
+    }
+    console.log('collision !!');
+   }
+
+   updatePosition(newPosition) {
+    this.direction = newPosition;
+   }
 }

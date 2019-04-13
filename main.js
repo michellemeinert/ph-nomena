@@ -31,21 +31,33 @@ function buildGameScreen() {
   </section>
  `)
 
- setTimeout(buildGameOverScreen, 3000000);
+ //setTimeout(buildGameOverScreen, 3000000);
+ // setting the canvas to the same dynamic height and width as parent container 
  const gameContainer = document.querySelector('.game-container');
-
  const width = gameContainer.offsetWidth;
  const height = gameContainer.offsetHeight;
-
  const canvas = document.querySelector('canvas');
  canvas.setAttribute('width', width);
- console.log(canvas);
- console.log(canvas.width);
  canvas.setAttribute('height', height);
 
-let game = new Game (canvas);
-game.startLoop();
- 
+ let game = new Game (canvas);
+ game.startLoop();
+ game.gameOver(buildGameOverScreen);
+
+ //creating the players movement
+ document.addEventListener('keydown', () => {
+  console.log(event.keyCode); //38 up  40 down 
+  if (event.keyCode === 38) {
+    game.player.updatePosition(-1);
+  } else if (event.keyCode === 40) {
+    game.player.updatePosition(1);
+  }
+ });
+ document.addEventListener('keyup',  () => {
+  if (event.keyCode === 38 || event.keyCode === 40){
+    game.player.updatePosition(0);
+  } 
+ });
  
 }
 
@@ -61,4 +73,5 @@ function buildGameOverScreen() {
 }
 buildStartScreen();
 }
-main();
+
+window.addEventListener('load', main);
