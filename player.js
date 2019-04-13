@@ -38,9 +38,12 @@ class Player {
    this.direction = 0;
   }
 
-  drawPlayer (){
-    this.ctx.fillStyle = 'black';
-    this.ctx.fillRect(this.x, this.y, this.size, this.size);
+  drawPlayer () {
+   this.ctx.beginPath();
+   this.ctx.arc(this.x, this.y, this.size/2, 0, Math.PI*2);
+   this.ctx.fillStyle = 'black';
+   this.ctx.fill();
+   this.ctx.closePath();
   }
 
   playerMovement(){
@@ -53,10 +56,13 @@ class Player {
    }
 
    collisionsWithObstacles(obstacles){
-   if((this.y - this.size/2 < obstacles.y + obstacles.size/2) || (this.y + this.size/2 > obstacles.y + obstacles.size/2)){
-     return true;
-    }
-    console.log('collision !!');
+    const collisionRight = this.x + this.size/2 > obstacles.x - obstacles.size/2;
+    const collisionLeft = this.x - this.size/2 < obstacles.x + obstacles.size/2;
+    const collisionTop = this.y - this.size/2 < obstacles.y + obstacles.size/2;
+    const collisionBottom = this.y + this.size/2 > obstacles.y + obstacles.size/2;
+  
+    return collisionTop && collisionLeft && collisionBottom && collisionRight; 
+    
    }
 
    updatePosition(newPosition) {

@@ -16,23 +16,45 @@
 
 // }
 
- class Obstacles {
-   constructor (canvas ,y) {
+ class ObstaclesTop {
+   constructor (canvas) {
      this.canvas = canvas;
      this.ctx = canvas.getContext('2d');
      this.maxWidth = this.canvas.width/6;
-     this.maxHeight = this.canvas.height/2.5;
+     this.randomHeight = Math.floor(Math.random()*(this.canvas.height/2));
      this.speed = 4;
      this.direction = -1;
-     this.x = this.canvas.width / this.maxWidth;
-     this.y = y;
+     this.x = this.canvas.width;
+     this.y = 0;
    }
 
-   drawObstacles (){
+   drawObstaclesTop (){
     this.ctx.fillStyle = '#383B53';
-    this.ctx.fillRect(this.x, this.y, this.maxWidth, this.maxHeight);
+    this.ctx.fillRect(this.x, this.y, this.maxWidth, this.randomHeight);
    }
-    obstacleMovement (){
+    obstacleMovementTop (){
+      this.x += this.direction * this.speed;
+
+    }
+ }
+
+ class ObstaclesBottom {
+   constructor (canvas) {
+     this.canvas = canvas;
+     this.canvas = canvas;
+     this.ctx = canvas.getContext('2d');
+     this.maxWidth = this.canvas.width/7;
+     this.randomHeight = Math.floor(Math.random()*(this.canvas.height/2));
+     this.speed = 4;
+     this.direction = -1;
+     this.x = this.canvas.width;
+     this.y = this.canvas.height;;
+   }
+   drawObstaclesBottom (){
+    this.ctx.fillStyle = '#383B53';
+    this.ctx.fillRect(this.x, this.y, this.maxWidth, this.randomHeight);
+   }
+    obstacleMovementBottom (){
       this.x += this.direction * this.speed;
 
     }

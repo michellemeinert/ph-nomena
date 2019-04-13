@@ -27,13 +27,35 @@ p {
   margin: 0;
 }
 
-
+#main {
+  
+}
 .game-container {
   width: 100%;
   height: 90vh;
-  border: 2px solid black;
 }
 
 canvas {
   border: 2px solid black;
+}
+
+#start-screen-section{
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+#game-name {
+  font-size: 90px;
+  margin:40px 0 0 0;
+}
+
+.button{
+  margin: 10px;
+  display: flex;
+  flex-direction : row;
 }
