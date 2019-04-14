@@ -33,8 +33,11 @@ class Game {
       if (Math.random() > 0.85) { // setting the probability  to 15% that a new bottomObstacle is created 
         this.obstaclesBottom.push(new ObstaclesBottom(this.canvas))
       }
-      console.log(this.obstaclesBottom);
+     // console.log(this.obstaclesBottom);
       this.clearCanvas();
+      if (this.player.currentFunction) {
+        this.player.currentFunction();
+      }
       this.drawCanvas();
       this.updateCanvas();
       this.objectsColliding();
@@ -54,7 +57,11 @@ class Game {
   }
   
   updateCanvas(){
-    this.player.playerMovement();
+    if (this.player.goLeft) {
+      this.player.playerGoLeft();
+    } else if (this.player.goRight) {
+      this.player.playerGoRight();
+    }
     this.obstaclesTop.forEach( (obstaclesTop) => {
       obstaclesTop.obstacleMovementTop();
       });
@@ -74,6 +81,7 @@ class Game {
   }
 
   objectsColliding(){
+    this.player.collisionsWithWalls(this.canvas);
     this.obstaclesTop.forEach( (obstac, index) => {
       const collidesTop = this.player.collisionsWithObstacles(obstac)
      if(collidesTop){

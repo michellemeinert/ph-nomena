@@ -1,31 +1,16 @@
 'use strict';
-// function Obstacles (canvas) {
-//  this.canvas = canvas;
-//  this.ctx = ctx;
-//  this.minWidth = null;
-//  this.maxWidth = null;
-//  this.speed = 1;
-//  this.direction = -1;
-// };
-
-// Obstacles.prototype.draw = function () {
-  
-// }
-
-// Obstacles.prototype.draw = function () {
-
-// }
-
- class ObstaclesTop {
+ 
+class ObstaclesTop {
    constructor (canvas) {
      this.canvas = canvas;
      this.ctx = canvas.getContext('2d');
      this.maxWidth = this.canvas.width/6;
      this.randomHeight = Math.floor(Math.random()*(this.canvas.height/2));
+     this.size = this.maxWidth * this.randomHeight;
      this.speed = 4;
      this.direction = -1;
-     this.x = this.canvas.width;
-     this.y = 0;
+     this.x = 0 - this.size;
+     this.y = 0 + this.size;
    }
 
    drawObstaclesTop (){
@@ -45,10 +30,11 @@
      this.ctx = canvas.getContext('2d');
      this.maxWidth = this.canvas.width/7;
      this.randomHeight = Math.floor(Math.random()*(this.canvas.height/2));
+     this.size = this.maxWidth * this.randomHeight;
      this.speed = 4;
      this.direction = -1;
-     this.x = this.canvas.width;
-     this.y = this.canvas.height;;
+     this.x = 0 + this.size;
+     this.y = this.canvas.height - this.size;
    }
    drawObstaclesBottom (){
     this.ctx.fillStyle = '#383B53';

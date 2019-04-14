@@ -44,20 +44,47 @@ function buildGameScreen() {
  game.startLoop();
  game.gameOver(buildGameOverScreen);
 
- //creating the players movement
+ 
  document.addEventListener('keydown', () => {
-  console.log(event.keyCode); //38 up  40 down 
-  if (event.keyCode === 38) {
-    game.player.updatePosition(-1);
-  } else if (event.keyCode === 40) {
-    game.player.updatePosition(1);
+   //debugger;
+  console.log(event.keyCode);
+  if (event.keyCode === 37) {
+    game.player.goLeft = true;
+   // game.player.playerGoLeft();
+   game.player.playerGoLeft();
+  } else if (event.keyCode === 39) {
+    game.player.goRight = true;
+    //game.player.playerGoRight();
+    game.player.playerGoRight();
+    
+    
   }
  });
- document.addEventListener('keyup',  () => {
-  if (event.keyCode === 38 || event.keyCode === 40){
-    game.player.updatePosition(0);
-  } 
+  document.addEventListener('keyup',  () => {
+   if (event.keyCode === 37 || event.keyCode === 39){
+    //game.player.playerApplyFriction();
+    game.player.goLeft = false;
+    game.player.goRight = false;
+    game.player.playerResetPostion();
+    //game.player.currentFunction = game.player.playerApplyFriction;
+   } 
+  });
+ document.addEventListener('keydown', () => {
+   console.log(event.keyCode)
+   if (event.keyCode === 32) {
+     game.player.jumping = true;
+     game.player.currentFunction = game.player.playerJumpUp;
+     //game.player.playerJumpUp();
+   }
  });
+ document.addEventListener('keyup', () => {
+  console.log(event.keyCode)
+  if (event.keyCode === 32) {
+    game.player.jumping = false; 
+    game.player.currentFunction = game.player.playerFallDown;
+    //game.player.playerFallDown();
+  }
+});
  
 }
 
