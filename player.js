@@ -31,58 +31,58 @@ class Player {
 
   playerJumpUp(){
     if (this.jumping) {
-    //this.velocityY += (10 - this. gravity);
-      this.y -= this.jumpHeight;
+    this.velocityY = (10 - this.gravity);
+      this.y -= this.velocityY;
     }
   }
 
   playerFallDown(){
     if (!this.jumping) {
-    //this.velocityY += (10 + this.gravity);
-    this.y = canvas.height / 2;
+    this.velocityY = (5 + this.gravity);
+    this.y += this.velocityY;
     }
   }
 
   playerGoLeft(){
     if (!this.goRight && this.goLeft) {
-    this.velocityX += 0.5;
+    this.velocityX += 0.2;
     this.x -= this.velocityX;
     }
   }
 
   playerGoRight(){
   if (!this.goLeft && this.goRight) {
-    this.velocityX += 0.5;
+    this.velocityX += 0.2;
     this.x += this.velocityX;
     }
   }
+  //using this to stop the player from moving after releasing the buttons
   playerResetPostion(){
     if (!this.goLeft || !this.goRight) {
       this.velocityX = 0;
     }
   }
   
-  playerApplyFriction(){
-    console.log(this.velocityX);
-    
-    //this.friction += 0.9;
-    this.velocityX *= this.friction;
-    this.velocityY *= this.friction;
-    this.x += this.velocityX;
-    this.y += this.velocityY;
-
+   playerApplyFriction(){
+     console.log(this.velocityX);
+     if (this.goLeft || this.goRight) {
+     this.velocityX *= this.friction;
+     this.velocityY *= this.friction;
+     this.x += this.velocityX;
+     this.y += this.velocityY;
+     }
   }
    updateLives(){
     this.lives -= 1;
     console.log(this.lives)
    }
    collisionsWithWalls(canvas) {
-    if (this.x > canvas.width - this.radius || this.x < 0 + this.radius) {
+    if (this.x > canvas.width - this.radius || this.x < 0 + this.radius || this.y < 0 + this.radius || this.y > canvas.height - this.radius) {
       console.log('collision w wall!!!');
       return;
     }
    }
    collisionsWithObstacles(obstacles){
-
+    
    }
 }

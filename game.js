@@ -27,12 +27,13 @@ class Game {
   startLoop(){
   
     const loop = () => {
-      if (Math.random() > 0.9) { // setting the probability  to 10% that a new topObstacle is created 
+      if (Math.random() > 0.97) { // setting the probability  to 5% that a new topObstacle is created 
         this.obstaclesTop.push(new ObstaclesTop(this.canvas))
       }
-      if (Math.random() > 0.85) { // setting the probability  to 15% that a new bottomObstacle is created 
-        this.obstaclesBottom.push(new ObstaclesBottom(this.canvas))
-      }
+      console.log(this.obstaclesTop);
+      // if (Math.random() > 0.85) { // setting the probability  to 15% that a new bottomObstacle is created 
+      //   this.obstaclesBottom.push(new ObstaclesBottom(this.canvas))
+      // }
      // console.log(this.obstaclesBottom);
       this.clearCanvas();
       if (this.player.currentFunction) {
@@ -65,9 +66,9 @@ class Game {
     this.obstaclesTop.forEach( (obstaclesTop) => {
       obstaclesTop.obstacleMovementTop();
       });
-    this.obstaclesBottom.forEach( (obstaclesBottom) => {
-      obstaclesBottom.obstacleMovementBottom();
-      });
+    // this.obstaclesBottom.forEach( (obstaclesBottom) => {
+    //   obstaclesBottom.obstacleMovementBottom();
+    //   });
   }
 
   drawCanvas(){
@@ -75,9 +76,9 @@ class Game {
     this.obstaclesTop.forEach( (obstaclesTop) => {
     obstaclesTop.drawObstaclesTop();
     });
-    this.obstaclesBottom.forEach( (obstaclesBottom) => {
-    obstaclesBottom.drawObstaclesBottom();
-    });
+    // this.obstaclesBottom.forEach( (obstaclesBottom) => {
+    // obstaclesBottom.drawObstaclesBottom();
+    // });
   }
 
   objectsColliding(){
@@ -95,18 +96,18 @@ class Game {
        }
       });
 
-    this.obstaclesBottom.forEach( (obstac, index) => {
-      const collidesBottom = this.player.collisionsWithObstacles(obstac)
-     if(collidesBottom){
-       this.obstaclesBottom.splice(index, 1);
-       this.player.updateLives();
-       console.log(this.player.lives)
-     }
-     if (this.player.lives === 0){
-       this.death === true;
-       this.buildGameOverScreen();
-     }
-    });
+    // this.obstaclesBottom.forEach( (obstac, index) => {
+    //   const collidesBottom = this.player.collisionsWithObstacles(obstac)
+    //  if(collidesBottom){
+    //    this.obstaclesBottom.splice(index, 1);
+    //    this.player.updateLives();
+    //    console.log(this.player.lives)
+    //  }
+    //  if (this.player.lives === 0){
+    //    this.death === true;
+    //    this.buildGameOverScreen();
+    //  }
+    // });
 
   }
   gameOver(buildGameOverScreen){

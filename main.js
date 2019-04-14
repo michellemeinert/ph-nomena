@@ -50,15 +50,13 @@ function buildGameScreen() {
   console.log(event.keyCode);
   if (event.keyCode === 37) {
     game.player.goLeft = true;
-   // game.player.playerGoLeft();
-   game.player.playerGoLeft();
+    game.player.playerGoLeft();
+   //game.player.playerApplyFriction();
   } else if (event.keyCode === 39) {
     game.player.goRight = true;
-    //game.player.playerGoRight();
     game.player.playerGoRight();
-    
-    
-  }
+    //game.player.playerApplyFriction();
+    }
  });
   document.addEventListener('keyup',  () => {
    if (event.keyCode === 37 || event.keyCode === 39){
@@ -66,7 +64,6 @@ function buildGameScreen() {
     game.player.goLeft = false;
     game.player.goRight = false;
     game.player.playerResetPostion();
-    //game.player.currentFunction = game.player.playerApplyFriction;
    } 
   });
  document.addEventListener('keydown', () => {
