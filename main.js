@@ -46,8 +46,6 @@ function buildGameScreen() {
 
  
  document.addEventListener('keydown', () => {
-   //debugger;
-  console.log(event.keyCode);
   if (event.keyCode === 37) {
     game.player.goLeft = true;
     game.player.playerGoLeft();
@@ -67,7 +65,6 @@ function buildGameScreen() {
    } 
   });
  document.addEventListener('keydown', () => {
-   console.log(event.keyCode)
    if (event.keyCode === 32) {
      game.player.jumping = true;
      game.player.currentFunction = game.player.playerJumpUp;
@@ -75,11 +72,16 @@ function buildGameScreen() {
    }
  });
  document.addEventListener('keyup', () => {
-  console.log(event.keyCode)
   if (event.keyCode === 32) {
     game.player.jumping = false; 
+    // if (game.player.onPlatform && !game.player.jumping)  {
+    // ////
+    // } 
+    if (!game.player.jumping && !game.player.onPlatform){
     game.player.currentFunction = game.player.playerFallDown;
-    //game.player.playerFallDown();
+  }
+  //game.player.playerFallDown();
+  //  game.player.currentFunction = game.player.playerFallDown;
   }
 });
  

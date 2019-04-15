@@ -3,7 +3,7 @@
 class Player {
   constructor (canvas) {
    this.lives = 1;
-   this.size = 30;
+   this.size = 15;
    this.x = canvas.width / 20;
    this.y = canvas.height / 2;
    this.canvas = canvas;
@@ -11,7 +11,7 @@ class Player {
    this.radius = this.size/2;
    this.velocityX = 0;
    this.velocityY = 0;
-   this.gravity = 0.5;
+   this.gravity = 0;
    this.jumping = false;
    this.direction = 0;
    this.goLeft = false;
@@ -32,17 +32,18 @@ class Player {
 
   playerJumpUp(){
     if (this.jumping) {
-    this.velocityY = (10 - this.gravity);
+      this.velocityY = (10 - this.gravity);
       this.y -= this.velocityY;
     }
   }
 
   playerFallDown(){
-    if (!this.jumping) {
-    this.velocityY = (5 + this.gravity);
+    if(!this.onPlatform){
+      this.velocityY = (5 + this.gravity);
     this.y += this.velocityY;
     }
-  }
+    
+   }
 
   playerGoLeft(){
     if (!this.goRight && this.goLeft) {
@@ -61,15 +62,10 @@ class Player {
   playerResetPostion(){
     if (!this.goLeft || !this.goRight) {
       this.velocityX = 0;
-    } else if (this.player.onPlatform) {
-      this.velocityX = platform.speed;
-      this.velocityY = 0;
-      this.gravity = 0;
-    }
+   } 
   }
   
   //  playerApplyFriction(){
-  //    console.log(this.velocityX);
   //    if (this.goLeft || this.goRight) {
   //    this.velocityX *= this.friction;
   //    this.velocityY *= this.friction;
@@ -79,7 +75,6 @@ class Player {
   // }
    updateLives(){
     this.lives -= 1;
-    console.log(this.lives)
    }
    collisionsWithWalls(canvas) {
     if (this.x > canvas.width - this.radius || this.x < 0 + this.radius || this.y < 0 + this.radius || this.y > canvas.height - this.radius) {
@@ -88,19 +83,23 @@ class Player {
     }
    }
    checkIfOnTopOfPlatform(platform){
+     const topCollision = this.y + this.radius > platform.y - platform.height / 2; 
+     const leftCollision = this.x + this.radius > platform.x - platform.randomWidth / 2;
+     const rightCollision = this.x - this.radius < platform.x + platform.randomWidth / 2;
      
-     if ((this.x + this.radius) > (platform.x - platform.randomWidth/2) && (this.x + this.radius) > (platform.x + platform.randomWidth/2) && (this.y - this.radius) === platform.y){
+     if (topCollision && leftCollision && rightCollision){
+      console.log('collision w platform!!!');
        this.onPlatform = true;
-       this.player.jumping = false;
-       console.log('on platform');
+       this.jumping = false;
+       return true;
      }
-   
+     return false;
   }
-  doWhenOnTopOfPlatform(platform){
-   if (this.onPlatform && !this.player.jumping) {
-     this.velocityX = platform.speed;
-      this.velocityY = 0;
-      this.gravity = 0;
-    }
-  }
+   doWhenOnTopOfPlatform(platform){
+    if (this.onPlatform) {
+      //  this.x -= platform.speed;
+       this.velocityY = 0;
+       this.gravity = 0;
+     }
+   }
 }

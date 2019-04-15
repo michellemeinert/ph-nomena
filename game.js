@@ -16,7 +16,6 @@ class Game {
       if (Math.random() > 0.9) { // setting the probability  to 5% that a new topObstacle is created 
         this.platforms.push(new Platforms(this.canvas))
       }
-      console.log(this.platforms);
       this.clearCanvas();
       if (this.player.currentFunction) {
         this.player.currentFunction();
@@ -46,10 +45,14 @@ class Game {
     this.platforms.forEach( (platforms) => {
       platforms.platformsMovement();
     });
-   if (!this.player.jumping && this.player.onPlatform){
-    setPlayerOnPlatform();
+   if (!this.player.jumping){
+    this.setPlayerOnPlatform();
+   } else if (!this.player.jumping && !this.player.onPlatform) {
+    this.player.gravity = 0.5;
+   } else if (this.player.jumping && !this.player.onPlatform) {
+     this.player.jumping = true;
    }
-   
+  
   }
 
   drawCanvas(){
@@ -70,12 +73,17 @@ class Game {
        }
   }
   setPlayerOnPlatform(){
-    this.platforms.forEach((element, index) => {
+    let testOne = false;
+    this.platforms.forEach( (element) => {
       const isPlayerOnPlatform = this.player.checkIfOnTopOfPlatform(element);
       if(isPlayerOnPlatform) {
-        this.player.doWhenOnTopOfPlatform();
-      }
+        testOne = true;
+        this.player.doWhenOnTopOfPlatform(element);
+      } 
      });
+     if(!testOne) {
+       this.player.onPlatform = false;
+     }
   }
 
   // outsideOfCanvas(element){
