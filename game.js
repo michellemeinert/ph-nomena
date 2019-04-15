@@ -1,40 +1,22 @@
 'use strict';
-// function Game (canvas) {
-//   this.canvas = canvas;
-//   this.ctx = ctx;
-//   this.player = player;
-//   this.obstacles = obstacles;
-//   this.death = death;
-// }
-
-//  Game.prototype.startLoop () {
-//    const loop = function () {
-//      window.requestAnimationFrame(loop)
-//    }
-//    window.requestAnimationFrame(loop);
-//  }
 
 class Game {
   constructor (canvas) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.player = new Player(this.canvas);
-    this.obstaclesTop = [];
-    this.obstaclesBottom = [];
+    this.platforms = [];
+    //this.obstaclesBottom = [];
     this.death = false;
   }
 
   startLoop(){
   
     const loop = () => {
-      if (Math.random() > 0.97) { // setting the probability  to 5% that a new topObstacle is created 
-        this.obstaclesTop.push(new ObstaclesTop(this.canvas))
+      if (Math.random() > 0.9) { // setting the probability  to 5% that a new topObstacle is created 
+        this.platforms.push(new Platforms(this.canvas))
       }
-      console.log(this.obstaclesTop);
-      // if (Math.random() > 0.85) { // setting the probability  to 15% that a new bottomObstacle is created 
-      //   this.obstaclesBottom.push(new ObstaclesBottom(this.canvas))
-      // }
-     // console.log(this.obstaclesBottom);
+      console.log(this.platforms);
       this.clearCanvas();
       if (this.player.currentFunction) {
         this.player.currentFunction();
@@ -42,14 +24,12 @@ class Game {
       this.drawCanvas();
       this.updateCanvas();
       this.objectsColliding();
+     // this.removePlatformsFromArray();
 
        if (this.death === false){
         window.requestAnimationFrame(loop); // callback loop -- creates actual loop 
        }
-       
-       console.log(this.player.direction);
-
-    }
+      }
     window.requestAnimationFrame(loop) // start loop
   }
 
@@ -63,53 +43,63 @@ class Game {
     } else if (this.player.goRight) {
       this.player.playerGoRight();
     }
-    this.obstaclesTop.forEach( (obstaclesTop) => {
-      obstaclesTop.obstacleMovementTop();
-      });
-    // this.obstaclesBottom.forEach( (obstaclesBottom) => {
-    //   obstaclesBottom.obstacleMovementBottom();
-    //   });
+    this.platforms.forEach( (platforms) => {
+      platforms.platformsMovement();
+    });
+   if (!this.player.jumping && this.player.onPlatform){
+    setPlayerOnPlatform();
+   }
+   
   }
 
   drawCanvas(){
     this.player.drawPlayer();
-    this.obstaclesTop.forEach( (obstaclesTop) => {
-    obstaclesTop.drawObstaclesTop();
+    this.platforms.forEach( (platforms) => {
+    platforms.drawPlatforms();
     });
-    // this.obstaclesBottom.forEach( (obstaclesBottom) => {
-    // obstaclesBottom.drawObstaclesBottom();
-    // });
   }
 
   objectsColliding(){
-    this.player.collisionsWithWalls(this.canvas);
-    this.obstaclesTop.forEach( (obstac, index) => {
-      const collidesTop = this.player.collisionsWithObstacles(obstac)
-     if(collidesTop){
-       this.obstaclesTop.splice(index, 1);
-       this.player.updateLives();
-       console.log(this.player.lives)
-     }
-     if (this.player.lives === 0){
+   if(this.player.collisionsWithWalls(this.canvas)){
+      this.player.updateLives();
+   }
+  
+   if (this.player.lives === 0){
        this.death === true;
        this.buildGameOverScreen();
        }
-      });
-
-    // this.obstaclesBottom.forEach( (obstac, index) => {
-    //   const collidesBottom = this.player.collisionsWithObstacles(obstac)
-    //  if(collidesBottom){
-    //    this.obstaclesBottom.splice(index, 1);
-    //    this.player.updateLives();
-    //    console.log(this.player.lives)
-    //  }
-    //  if (this.player.lives === 0){
-    //    this.death === true;
-    //    this.buildGameOverScreen();
-    //  }
-    // });
-
   }
+  setPlayerOnPlatform(){
+    this.platforms.forEach((element, index) => {
+      const isPlayerOnPlatform = this.player.checkIfOnTopOfPlatform(element);
+      if(isPlayerOnPlatform) {
+        this.player.doWhenOnTopOfPlatform();
+      }
+     });
+  }
+
+  // outsideOfCanvas(element){
+  //    oustsideLeft = element.x < 0 + element.randomWidth;
+  //    outsideTop = element.y < 0 + element.height;
+  //    outsideRight = element.x > this.canvas.width - element.randomWidth;
+  //    outsideBottom = lement.y > this.canvas.height - element.height;
+  //    if (outsideLeft|| outsideTop|| outsideRight || outsideBottom){
+  //      console.log('outside');
+  //      return;
+  //    }
+  //  }
+  
+  // removePlatformsFromArray() {
+  //   if(this.platforms.length > 0){
+  //     this.platforms.forEach((element, index) => {
+  //      const isOutsideOfCanvas = this.platforms.outsideOfCanvas(element);
+  //      if(isOutsideOfCanvas) {
+  //        this.platforms.splice(index, 1);
+  //      }
+  //     });
+  //   } 
+  // }
+
   gameOver(buildGameOverScreen){
    this.buildGameOverScreen = buildGameOverScreen;
   }

@@ -16,9 +16,10 @@ class Player {
    this.direction = 0;
    this.goLeft = false;
    this.goRight = false;
-   this.friction = 0.9;
+   //this.friction = 0.9;
    this.currentFunction = null;
-   this.jumpHeight = 10;
+   //this.maxJumpHeight = 17;
+   this.onPlatform = false;
   }
 
   drawPlayer () {
@@ -60,18 +61,22 @@ class Player {
   playerResetPostion(){
     if (!this.goLeft || !this.goRight) {
       this.velocityX = 0;
+    } else if (this.player.onPlatform) {
+      this.velocityX = platform.speed;
+      this.velocityY = 0;
+      this.gravity = 0;
     }
   }
   
-   playerApplyFriction(){
-     console.log(this.velocityX);
-     if (this.goLeft || this.goRight) {
-     this.velocityX *= this.friction;
-     this.velocityY *= this.friction;
-     this.x += this.velocityX;
-     this.y += this.velocityY;
-     }
-  }
+  //  playerApplyFriction(){
+  //    console.log(this.velocityX);
+  //    if (this.goLeft || this.goRight) {
+  //    this.velocityX *= this.friction;
+  //    this.velocityY *= this.friction;
+  //    this.x += this.velocityX;
+  //    this.y += this.velocityY;
+  //    }
+  // }
    updateLives(){
     this.lives -= 1;
     console.log(this.lives)
@@ -82,7 +87,20 @@ class Player {
       return;
     }
    }
-   collisionsWithObstacles(obstacles){
-    
-   }
+   checkIfOnTopOfPlatform(platform){
+     
+     if ((this.x + this.radius) > (platform.x - platform.randomWidth/2) && (this.x + this.radius) > (platform.x + platform.randomWidth/2) && (this.y - this.radius) === platform.y){
+       this.onPlatform = true;
+       this.player.jumping = false;
+       console.log('on platform');
+     }
+   
+  }
+  doWhenOnTopOfPlatform(platform){
+   if (this.onPlatform && !this.player.jumping) {
+     this.velocityX = platform.speed;
+      this.velocityY = 0;
+      this.gravity = 0;
+    }
+  }
 }

@@ -1,6 +1,6 @@
 'use strict';
  
-class ObstaclesTop {
+class Platforms {
    constructor (canvas) {
      this.canvas = canvas;
      this.ctx = canvas.getContext('2d');
@@ -9,18 +9,20 @@ class ObstaclesTop {
      this.size = this.randomWidth * this.height;
      this.speed = 3;
      this.direction = -1;
-     this.x = 0 + this.size;
+     this.x = this.canvas.width - this.size;
      this.y = Math.floor(Math.random()*(this.canvas.width));
    }
 
-   drawObstaclesTop (){
+   drawPlatforms (){
     this.ctx.fillStyle = '#383B53';
     this.ctx.fillRect(this.x, this.y, this.randomWidth, this.height);
    }
-    obstacleMovementTop (){
+   
+   platformsMovement(){
       this.x += this.direction * this.speed;
 
-    }
+  }
+  
  }
 
 //  class ObstaclesBottom {
