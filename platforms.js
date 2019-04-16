@@ -4,18 +4,18 @@ class Platforms {
    constructor (canvas) {
      this.canvas = canvas;
      this.ctx = canvas.getContext('2d');
-     this.randomWidth = Math.floor(Math.random()*(this.canvas.width/2.5));
+     this.width = Math.floor(Math.random()*this.canvas.width);
      this.height = 10;
-     this.size = this.randomWidth * this.height;
+     this.size = this.width * this.height;
      this.speed = 3;
      this.direction = -1;
      this.x = this.canvas.width - this.size;
-     this.y = Math.floor(Math.random()*(this.canvas.width));
+     this.y = Math.floor(Math.random()*(this.canvas.height));
    }
 
    drawPlatforms (){
     this.ctx.fillStyle = '#383B53';
-    this.ctx.fillRect(this.x - this.randomWidth/2, this.y - this.height/2, this.randomWidth, this.height);
+    this.ctx.fillRect(this.x - this.width/2, this.y - this.height/2, this.width, this.height);
    }
    
    platformsMovement(){
@@ -24,26 +24,4 @@ class Platforms {
   }
   
  }
-
-//  class ObstaclesBottom {
-//    constructor (canvas) {
-//      this.canvas = canvas;
-//      this.canvas = canvas;
-//      this.ctx = canvas.getContext('2d');
-//      this.maxWidth = this.canvas.width/7;
-//      this.randomHeight = Math.floor(Math.random()*(this.canvas.height/2));
-//      this.size = this.maxWidth * this.randomHeight;
-//      this.speed = 4;
-//      this.direction = -1;
-//      this.x = 0 + this.size;
-//      this.y = this.canvas.height - this.size;
-//    }
-//    drawObstaclesBottom (){
-//     this.ctx.fillStyle = '#383B53';
-//     this.ctx.fillRect(this.x, this.y, this.maxWidth, this.randomHeight);
-//    }
-//     obstacleMovementBottom (){
-//       this.x += this.direction * this.speed;
-
-//     }
  

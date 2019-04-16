@@ -20,6 +20,7 @@ class Player {
    this.currentFunction = null;
    //this.maxJumpHeight = 17;
    this.onPlatform = false;
+   this.score = 0;
   }
 
   drawPlayer () {
@@ -88,9 +89,11 @@ class Player {
      const rightCollision = this.x - this.radius < platform.x + platform.randomWidth / 2;
      
      if (topCollision && leftCollision && rightCollision){
-      console.log('collision w platform!!!');
+      //console.log('collision w platform!!!');
        this.onPlatform = true;
        this.jumping = false;
+       this.score += 1;
+       console.log(this.score);
        return true;
      }
      return false;

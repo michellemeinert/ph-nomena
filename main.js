@@ -27,6 +27,7 @@ function buildStartScreen () {
 function buildGameScreen() {
   buildScreens(`
   <section class="game-container">
+  <div id="score"><h3>Score :</h3></div>
   <canvas id="canvas"></canvas>
   </section>
  `)
@@ -39,6 +40,7 @@ function buildGameScreen() {
  const canvas = document.querySelector('canvas');
  canvas.setAttribute('width', width);
  canvas.setAttribute('height', height);
+ const score = document.getElementById('score');
 
  let game = new Game (canvas);
  game.startLoop();
