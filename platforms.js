@@ -10,12 +10,12 @@ class Platforms {
      this.speed = 3;
      this.direction = -1;
      this.x = this.canvas.width - this.size;
-     this.y = Math.floor(Math.random()*this.canvas.height);
+     this.y = Math.floor(Math.random()*this.canvas.width);
    }
 
    drawPlatforms (){
     this.ctx.fillStyle = '#383B53';
-    this.ctx.fillRect(this.x - this.width/2, this.y - this.height/2, this.width, this.height);
+    this.ctx.fillRect(this.x - this.randomWidth/2, this.y - this.height/2, this.randomWidth, this.height);
    }
    
    platformsMovement(){
