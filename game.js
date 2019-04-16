@@ -6,20 +6,15 @@ class Game {
     this.ctx = canvas.getContext('2d');
     this.player = new Player(this.canvas);
     this.platforms = [];
-    this.deathSquares = [];
     this.death = false;
   }
 
   startLoop(){
   
     const loop = () => {
-      if (Math.random() > 0.6) { // setting the probability  to 50% that a new platform is created 
+      if (Math.random() > 0.7) { // setting the probability  to 40% that a new platform is created 
         this.platforms.push(new Platforms(this.canvas))
-        console.log(this.platforms);
-      }
-      if (Math.random() > 0.7) { // setting the probability  to 50% that a new platform is created 
-        this.deathSquares.push(new DeathSquares(this.canvas))
-        console.log(this.deathSquares);
+        //console.log(this.platforms);
       }
       this.clearCanvas();
       if (this.player.currentFunction) {
@@ -50,9 +45,6 @@ class Game {
     this.platforms.forEach( (platforms) => {
       platforms.platformsMovement();
     });
-    this.deathSquares.forEach( (square) => {
-      square.deathSquaresMovement();
-      });
     if (!this.player.jumping){
     this.setPlayerOnPlatform();
     } else if (!this.player.jumping && !this.player.onPlatform) {
@@ -67,9 +59,6 @@ class Game {
     this.player.drawPlayer();
     this.platforms.forEach( (platforms) => {
     platforms.drawPlatforms();
-    });
-    this.deathSquares.forEach( (square) => {
-    square.drawDeathSquares();
     });
   }
 

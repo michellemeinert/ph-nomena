@@ -4,13 +4,13 @@ class Platforms {
    constructor (canvas) {
      this.canvas = canvas;
      this.ctx = canvas.getContext('2d');
-     this.width = Math.floor(Math.random()*this.canvas.width);
+     this.randomWidth = Math.floor(Math.random()*this.canvas.width);
      this.height = 10;
-     this.size = this.width * this.height;
+     this.size = this.randomWidth * this.height;
      this.speed = 3;
      this.direction = -1;
      this.x = this.canvas.width - this.size;
-     this.y = Math.floor(Math.random()*(this.canvas.height));
+     this.y = Math.floor(Math.random()*this.canvas.height);
    }
 
    drawPlatforms (){
