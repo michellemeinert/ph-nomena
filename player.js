@@ -32,32 +32,39 @@ class Player {
   }
 
   playerJumpUp(){
+   // this.jumping = true;
     if (this.jumping) {
       this.velocityY = (10 - this.gravity);
       this.y -= this.velocityY;
+
     }
   }
 
   playerFallDown(){
-    if(!this.onPlatform){
-      this.velocityY = (5 + this.gravity);
+    if(!this.onPlatform && !this.jumping){
+    this.velocityY = (5 + this.gravity);
     this.y += this.velocityY;
+   
     }
     
    }
 
   playerGoLeft(){
-    if (!this.goRight && this.goLeft) {
+   // if (!this.goRight && this.goLeft) {
     this.velocityX += 0.2;
     this.x -= this.velocityX;
-    }
+   // this.goLeft = true;
+   
+   // }
   }
 
   playerGoRight(){
-  if (!this.goLeft && this.goRight) {
+ // if (!this.goLeft && this.goRight) {
     this.velocityX += 0.2;
     this.x += this.velocityX;
-    }
+  //  this.goRight = true;
+   
+  //  }
   }
   //using this to stop the player from moving after releasing the buttons
   playerResetPostion(){
@@ -84,9 +91,9 @@ class Player {
     }
    }
    checkIfOnTopOfPlatform(platform){
-     const topCollision = this.y + this.radius > platform.y - platform.height / 2; 
-     const leftCollision = this.x + this.radius > platform.x - platform.randomWidth / 2;
-     const rightCollision = this.x - this.radius < platform.x + platform.randomWidth / 2;
+     const topCollision = this.y + this.radius > platform.y - platform.height/2; //+this.radius
+     const leftCollision = this.x + this.radius > platform.x - platform.randomWidth; //+this.radius
+     const rightCollision = this.x - this.radius < platform.x + platform.randomWidth; // - this.radius 
      
      if (topCollision && leftCollision && rightCollision){
       //console.log('collision w platform!!!');
@@ -98,11 +105,12 @@ class Player {
      }
      return false;
   }
-   doWhenOnTopOfPlatform(platform){
+   doWhenOnTopOfPlatform(){
     if (this.onPlatform) {
-      //  this.x -= platform.speed;
+      // this.x -= platform.speed;
        this.velocityY = 0;
        this.gravity = 0;
+      
      }
    }
 }

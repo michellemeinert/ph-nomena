@@ -12,9 +12,9 @@ class Game {
   startLoop(){
   
     const loop = () => {
-      if (Math.random() > 0.7) { // setting the probability  to 40% that a new platform is created 
+      if (Math.random() > 0.9) { // setting the probability  to 10% that a new platform is created 
         this.platforms.push(new Platforms(this.canvas))
-        //console.log(this.platforms);
+        console.log(this.platforms);
       }
       this.clearCanvas();
       if (this.player.currentFunction) {
@@ -26,10 +26,10 @@ class Game {
      // this.removePlatformsFromArray();
 
        if (this.death === false){
-        window.requestAnimationFrame(loop); // callback loop -- creates actual loop 
+        window.requestAnimationFrame(loop); 
        }
       }
-    window.requestAnimationFrame(loop) // start loop
+    window.requestAnimationFrame(loop);
   }
 
   clearCanvas(){
@@ -67,10 +67,10 @@ class Game {
       this.player.updateLives();
    }
   
-   if (this.player.lives === 0){
-       this.death === true;
-       this.buildGameOverScreen();
-       }
+  //  if (this.player.lives === 0){
+  //      this.death === true;
+  //      this.gameOver();
+  //      }
   }
   setPlayerOnPlatform(){
     let testOne = false;
@@ -86,16 +86,16 @@ class Game {
      }
   }
 
-  removePlatformsFromArray() {
-   if(this.platforms.length > 0){
-     this.platforms.forEach((element, index) => {
-      const isOutsideOfCanvas = this.platforms.outsideOfCanvas(element);
-      if(isOutsideOfCanvas) {
-        this.platforms.splice(index, 1);
-      }
-     });
-   } 
- }
+//   removePlatformsFromArray() {
+//    if(this.platforms.length > 0){
+//      this.platforms.forEach((element, index) => {
+//       const isOutsideOfCanvas = this.platforms.outsideOfCanvas(element);
+//       if(isOutsideOfCanvas) {
+//         this.platforms.splice(index, 1);
+//       }
+//      });
+//    } 
+//  }
 
    outsideOfCanvas(element) {
     oustsideLeft = element.x < 0 + element.randomWidth;

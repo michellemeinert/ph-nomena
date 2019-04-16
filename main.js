@@ -69,13 +69,17 @@ function buildGameScreen() {
  document.addEventListener('keydown', () => {
    if (event.keyCode === 32) {
      game.player.jumping = true;
+     
+     //if (game.player.jumping) {
      game.player.currentFunction = game.player.playerJumpUp;
+     //}
      //game.player.playerJumpUp();
    }
  });
  document.addEventListener('keyup', () => {
   if (event.keyCode === 32) {
     game.player.jumping = false; 
+   
     // if (game.player.onPlatform && !game.player.jumping)  {
     // ////
     // } 
