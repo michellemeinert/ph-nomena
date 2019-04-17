@@ -7,7 +7,7 @@ class Game {
     this.player = new Player(this.canvas);
     this.platforms = [];
     this.death = false;
-    this.audio = new Audio('./1 Tale Of Us - Lies.wav');
+    this.audio = new Audio('./Daft Punk - Veridis Quo.mp3');
   }
 
   startLoop(){
