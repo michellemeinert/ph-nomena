@@ -2,7 +2,7 @@
 
 class Player {
   constructor (canvas) {
-   this.lives = 3000000000000;
+   this.lives = 1;
    this.size = 16;
    this.x = canvas.width / 20;
    this.y = canvas.height / 2;
