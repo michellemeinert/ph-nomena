@@ -23,7 +23,7 @@ function buildGameScreen() {
   <canvas id="canvas"></canvas>
   </section>
  `)
-
+ 
  //setTimeout(buildGameOverScreen, 3000000);
  const gameContainer = document.querySelector('.game-container');
  const width = gameContainer.offsetWidth;

@@ -7,13 +7,13 @@ class Game {
     this.player = new Player(this.canvas);
     this.platforms = [];
     this.death = false;
+    this.audio = new Audio('./1 Tale Of Us - Lies.wav');
   }
 
   startLoop(){
   
     const loop = () => {
-      
-      if (Math.random() > 0.97) { 
+      if (Math.random() > 0.95) { 
         this.platforms.push(new Platforms(this.canvas))
        }
 
@@ -79,6 +79,7 @@ class Game {
     this.platforms.forEach( (platforms) => {
     platforms.drawPlatforms();
     });
+    this.audio.play();
   }
 
   objectsColliding(){
@@ -90,6 +91,7 @@ class Game {
    if (this.player.lives === 0){
        this.death = true;
        this.buildGameOverScreen();
+       this.audio.pause();
        }
   }
 
@@ -104,7 +106,7 @@ class Game {
      });
   }
 
-   removePlatformsFromArray() {
+  removePlatformsFromArray() {
     if(this.platforms.length > 0){
       this.platforms.forEach((element, index) => {
        const isOutsideOfCanvas = this.platforms.outsideOfCanvas(element);
@@ -119,18 +121,8 @@ class Game {
     this.ctx.fillStyle = "#BA1200";
     this.ctx.fillText("Score: " + this.player.score, 8, 45);
   }
-
-  //  outsideOfCanvas(element) {
-  //   oustsideLeft = element.x < 0 + element.randomWidth;
-  //   outsideTop = element.y < 0 + element.height;
-  //   outsideRight = element.x > this.canvas.width - element.randomWidth;
-  //   outsideBottom = lement.y > this.canvas.height - element.height;
-  //   if (outsideLeft|| outsideTop|| outsideRight || outsideBottom){
-  //     return;
-  //   }
-  // }
   
- gameOver(buildGameOverScreen){
+  gameOver(buildGameOverScreen){
    this.buildGameOverScreen = buildGameOverScreen;
   }
 }

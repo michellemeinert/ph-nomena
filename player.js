@@ -2,7 +2,7 @@
 
 class Player {
   constructor (canvas) {
-   this.lives = 3;
+   this.lives = 3000000000000;
    this.size = 16;
    this.x = canvas.width / 20;
    this.y = canvas.height / 2;
@@ -89,7 +89,7 @@ class Player {
         this.onPlatform = true;
         this.jumping = false;
         this.score += 1;
-        this.y = platform.y-platform.height/2-this.size+1
+        this.y = platform.y-platform.height/2-this.size+1;
        
      
        
@@ -111,7 +111,7 @@ class Player {
  }
    doWhenOnTopOfPlatform(platform){
     if (this.onPlatform) {
-       this.x -= platform.speed;
+      // this.x -= platform.speed;
        this.velocityY = 0;
        this.gravity = 0;
       
