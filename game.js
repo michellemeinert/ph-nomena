@@ -12,21 +12,24 @@ class Game {
   startLoop(){
   
     const loop = () => {
-      if (Math.random() > 0.95) { 
+      
+      if (Math.random() > 0.97) { 
         this.platforms.push(new Platforms(this.canvas))
-       
-      }
+       }
+
       this.clearCanvas();
       if (!this.player.jumping && !this.player.onPlatform){
         this.player.currentFunction = this.player.playerFallDown;
       }
+
       if (this.player.currentFunction) {
         this.player.currentFunction();
       }
+
       this.drawCanvas();
       this.updateCanvas();
       this.objectsColliding();
-     // this.removePlatformsFromArray();
+      //this.removePlatformsFromArray();
 
        if (this.death === false){
         window.requestAnimationFrame(loop); 
@@ -45,6 +48,7 @@ class Game {
     } else if (this.player.goRight) {
       this.player.playerGoRight();
     }
+
     this.platforms.forEach( (platforms) => {
       platforms.platformsMovement();
     });
@@ -79,11 +83,12 @@ class Game {
   objectsColliding(){
    if(this.player.collisionsWithWalls(this.canvas)){
       this.player.updateLives();
+      console.log(this.player.lives);
    }
   
    if (this.player.lives === 0){
-       this.death === true;
-       this.gameOver();
+       this.death = true;
+       this.gameOver(buildGameOverScreen);
        }
   }
 
@@ -92,7 +97,7 @@ class Game {
       const isPlayerOnPlatform = this.player.checkIfOnTopOfPlatform(element);
       if(isPlayerOnPlatform) {
         this.player.doWhenOnTopOfPlatform(element);
-      }else{
+      } else {
         this.player.onPlatform = false
       }
      });
@@ -109,15 +114,15 @@ class Game {
     } 
   }
 
-   outsideOfCanvas(element) {
-    oustsideLeft = element.x < 0 + element.randomWidth;
-    outsideTop = element.y < 0 + element.height;
-    outsideRight = element.x > this.canvas.width - element.randomWidth;
-    outsideBottom = lement.y > this.canvas.height - element.height;
-    if (outsideLeft|| outsideTop|| outsideRight || outsideBottom){
-      return;
-    }
-  }
+  //  outsideOfCanvas(element) {
+  //   oustsideLeft = element.x < 0 + element.randomWidth;
+  //   outsideTop = element.y < 0 + element.height;
+  //   outsideRight = element.x > this.canvas.width - element.randomWidth;
+  //   outsideBottom = lement.y > this.canvas.height - element.height;
+  //   if (outsideLeft|| outsideTop|| outsideRight || outsideBottom){
+  //     return;
+  //   }
+  // }
   
  gameOver(buildGameOverScreen){
    this.buildGameOverScreen = buildGameOverScreen;

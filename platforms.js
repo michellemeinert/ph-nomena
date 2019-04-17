@@ -14,13 +14,22 @@ class Platforms {
    }
 
    drawPlatforms (){
-    this.ctx.fillStyle = '#383B53';
+    this.ctx.fillStyle = '#BA1200';
     this.ctx.fillRect(this.x - this.randomWidth/2, this.y - this.height/2, this.randomWidth, this.height);
    }
    
    platformsMovement(){
       this.x += this.direction * this.speed;
 
+  }
+  outsideOfCanvas(element) {
+    oustsideLeft = element.x < 0 + element.randomWidth;
+    outsideTop = element.y < 0 + element.height;
+    outsideRight = element.x > this.canvas.width - element.randomWidth;
+    outsideBottom = lement.y > this.canvas.height - element.height;
+    if (outsideLeft|| outsideTop|| outsideRight || outsideBottom){
+      return;
+    }
   }
   
  }

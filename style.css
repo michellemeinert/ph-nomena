@@ -16,7 +16,7 @@ body {
 /* ---- typography ---- */
 
 body {
-  color: #050401;
+  color: #240115;
   font-family: 'Roboto Slab', serif;
   font-size: 40px;
   line-height: 147%;
@@ -36,7 +36,15 @@ p {
 }
 
 canvas {
+  height: auto;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  margin: 50px;
   border: 2px solid black;
+
 }
 
 #start-screen-section{
@@ -51,12 +59,23 @@ canvas {
 
 #game-name {
   font-size: 90px;
-  margin:40px 0 0 0;
+  margin:40px;
 }
 
-.button{
+.start-button{
   margin: 10px;
   display: flex;
   flex-direction : row;
-  
+  height: 100px;
+  width:260px;
+  background-color: #B6C2D9;
+  border: 0.5px solid #BA1200;
+}
+
+.buttonParagraph{
+  font-size: 38px;
+  font-family: 'Roboto Slab', serif;
+  color:  #BA1200;
+  margin-bottom: 2px;
+  margin-left: 10px;
 }

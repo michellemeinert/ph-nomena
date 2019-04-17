@@ -13,7 +13,7 @@ class Player {
    this.velocityY = 0;
    this.gravity = 0;
    this.jumping = false;
-   this.direction = 0;
+  // this.direction = 0;
    this.goLeft = false;
    this.goRight = false;
    this.currentFunction = null;
@@ -32,7 +32,7 @@ class Player {
 
   playerJumpUp(){
     if (this.jumping && !this.hittingHead) {
-      this.velocityY = (-5 - this.gravity);
+      this.velocityY = (-5 + this.gravity);
       this.y += this.velocityY;
 
     }
@@ -55,7 +55,8 @@ class Player {
   playerGoRight(){
     this.velocityX += 0.2;
     this.x += this.velocityX;
- }
+  }
+
   //using this to stop the player from moving after releasing the buttons
   playerResetPostion(){
     if (!this.goLeft || !this.goRight) {
@@ -63,16 +64,19 @@ class Player {
    } 
   }
 
-   updateLives(){
-    this.lives -= 1;
+  updateLives() {
+    console.log(this.player.lives);
+    this.lives--;
+    
    }
-   collisionsWithWalls(canvas) {
+
+  collisionsWithWalls(canvas) {
     if (this.x > canvas.width - this.radius || this.x < 0 + this.radius || this.y < 0 + this.radius || this.y > canvas.height - this.radius) {
-      //console.log('collision w wall!!!');
+      //console.log('collision w wall!!!'); 
       return;
     }
    }
-   checkIfOnTopOfPlatform(platform){
+  checkIfOnTopOfPlatform(platform){
      const topCollision = this.y + this.radius > platform.y - platform.height/2; 
      const bottomCollion = this.y - this.radius < platform.y + platform.height/2;
      const leftCollision = this.x + this.radius > platform.x - platform.randomWidth/2; 

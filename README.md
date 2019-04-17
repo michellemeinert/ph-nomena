@@ -9,7 +9,6 @@ Canvas, the player can move up and down to avoid crashing into obstacles.
 
 
 ## Backlog
-- User can choose between different themes that serve as optical illusions
 - background music for fun times 
 
 
