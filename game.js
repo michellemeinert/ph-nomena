@@ -118,7 +118,7 @@ class Game {
     } 
   }
   drawScore() {
-    this.ctx.font = "40px Roboto Slab";
+    this.ctx.font = "40px Archivo Black";
     this.ctx.fillStyle = "#07070A";
     this.ctx.fillText("Score: " + this.player.score, 8, 45);
   }

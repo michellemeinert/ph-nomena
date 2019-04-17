@@ -1,5 +1,6 @@
 /* ---- reset ---- */
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:300');
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black');
 html {
   box-sizing: border-box;
 }
@@ -13,7 +14,7 @@ html {
 
 body {
   color: #07070A;
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Archivo Black', sans-serif;
   font-size: 40px;
   line-height: 147%;
   display: flex;
@@ -73,13 +74,13 @@ canvas {
   display: flex;
   flex-direction : row;
   height: 110px;
-  width:260px;
+  width:300px;
   border: 0.5px solid #07070A;
 }
 
 .buttonsParagraph{
   font-size: 38px;
-  font-family: 'Roboto Slab', serif;
+  font-family:'Archivo Black', sans-serif;
   color:  #07070A;
   margin-bottom: 2px;
   margin-left: 10px;
