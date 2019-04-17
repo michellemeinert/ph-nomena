@@ -47,7 +47,7 @@ canvas {
 
 }
 
-#start-screen-section{
+#screen-sections{
   height: auto;
   display: flex;
   flex-direction: column;
@@ -57,12 +57,12 @@ canvas {
   padding: 0;
 }
 
-#game-name {
+#game-headings {
   font-size: 90px;
   margin:40px;
 }
 
-.start-button{
+.buttons{
   margin: 10px;
   display: flex;
   flex-direction : row;
@@ -72,10 +72,13 @@ canvas {
   border: 0.5px solid #7F2CCB;
 }
 
-.buttonParagraph{
+.buttonsParagraph{
   font-size: 38px;
   font-family: 'Roboto Slab', serif;
   color:  #7F2CCB;
   margin-bottom: 2px;
   margin-left: 10px;
 }
+
+
+

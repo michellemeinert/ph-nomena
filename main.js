@@ -8,9 +8,9 @@ function main() {
 
 function buildStartScreen () {
   buildScreens(`
-  <section id="start-screen-section">
-  <h1 id="game-name">Phänomena</h1>
-  <button class ="start-button"><p class="buttonParagraph">You will fail!</p></button>
+  <section id="screen-sections">
+  <h1 id="game-headings">Phänomena</h1>
+  <button class ="start-button buttons"><p class="buttonsParagraph">You will fail!</p></button>
   </section>
   `)
   const startButton = document.querySelector('.start-button')
@@ -76,9 +76,9 @@ function buildGameScreen() {
 
 function buildGameOverScreen() {
   buildScreens (`
-  <section>
-   <h1>Game Over</h1>
-   <button class="restart-button">You\'ll fail, again</button>
+  <section id="screen-sections">
+   <h1 id="game-headings">Game Over</h1>
+   <button class="restart-button buttons"><p class="buttonsParagraph">You\'ll fail, again</p></button>
   </section>
   `)
   const resetButton = document.querySelector('.restart-button')
