@@ -40,6 +40,7 @@ class Player {
 
   playerFallDown(){
     if(!this.onPlatform && !this.jumping){
+    this.gravity += 0.1;
     this.velocityY = (5 + this.gravity);
     this.y += this.velocityY;
    
