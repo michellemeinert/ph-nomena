@@ -14,7 +14,7 @@ class Platforms {
    }
 
    drawPlatforms (){
-    this.ctx.fillStyle = '#BA1200';
+    this.ctx.fillStyle = '#7F2CCB';
     this.ctx.fillRect(this.x - this.randomWidth/2, this.y - this.height/2, this.randomWidth, this.height);
    }
    

@@ -65,15 +65,16 @@ class Player {
   }
 
   updateLives() {
-    console.log(this.player.lives);
+   console.log(this.lives);
     this.lives--;
     
    }
 
   collisionsWithWalls(canvas) {
+    
     if (this.x > canvas.width - this.radius || this.x < 0 + this.radius || this.y < 0 + this.radius || this.y > canvas.height - this.radius) {
       //console.log('collision w wall!!!'); 
-      return;
+      return true;
     }
    }
   checkIfOnTopOfPlatform(platform){

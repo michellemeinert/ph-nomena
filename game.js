@@ -83,12 +83,12 @@ class Game {
   objectsColliding(){
    if(this.player.collisionsWithWalls(this.canvas)){
       this.player.updateLives();
-      console.log(this.player.lives);
+     console.log(this.player.velocityX);
    }
   
    if (this.player.lives === 0){
        this.death = true;
-       this.gameOver(buildGameOverScreen);
+       this.buildGameOverScreen();
        }
   }
 

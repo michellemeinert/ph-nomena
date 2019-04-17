@@ -16,7 +16,7 @@ body {
 /* ---- typography ---- */
 
 body {
-  color: #240115;
+  color: #07070A;
   font-family: 'Roboto Slab', serif;
   font-size: 40px;
   line-height: 147%;
@@ -43,7 +43,7 @@ canvas {
   justify-items: center;
   align-items: center;
   margin: 50px;
-  border: 2px solid black;
+  border: 2px solid #414361;
 
 }
 
@@ -69,13 +69,13 @@ canvas {
   height: 100px;
   width:260px;
   background-color: #B6C2D9;
-  border: 0.5px solid #BA1200;
+  border: 0.5px solid #7F2CCB;
 }
 
 .buttonParagraph{
   font-size: 38px;
   font-family: 'Roboto Slab', serif;
-  color:  #BA1200;
+  color:  #7F2CCB;
   margin-bottom: 2px;
   margin-left: 10px;
 }
