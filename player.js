@@ -13,7 +13,6 @@ class Player {
    this.velocityY = 0;
    this.gravity = 0;
    this.jumping = false;
-  // this.direction = 0;
    this.goLeft = false;
    this.goRight = false;
    this.currentFunction = null;
@@ -25,7 +24,7 @@ class Player {
   drawPlayer () {
    this.ctx.beginPath();
    this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
-   this.ctx.fillStyle = 'black';
+   this.ctx.fillStyle = '#01200F';
    this.ctx.fill();
    this.ctx.closePath();
   }

@@ -60,6 +60,7 @@ class Game {
     } else if (this.player.jumping && !this.player.onPlatform) {
    // console.log("heyyyyyy girrrrrl")
      this.player.jumping = true;
+     this.player.gravity = 0;
      let hitMyHead = false
      this.platforms.forEach( (element) => {
       if(this.player.checkIfUnderPlatform(element) && !hitMyHead){
