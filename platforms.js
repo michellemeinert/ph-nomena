@@ -4,7 +4,7 @@ class Platforms {
    constructor (canvas) {
      this.canvas = canvas;
      this.ctx = canvas.getContext('2d');
-     this.randomWidth = Math.floor(Math.random()*this.canvas.width / 6);
+     this.randomWidth = 150;
      this.height = 10;
      this.size = this.randomWidth * this.height;
      this.speed = 3;

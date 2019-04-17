@@ -11,17 +11,15 @@ function buildStartScreen () {
   <section id="start-screen-section">
   <h1 id="game-name">Phänomena</h1>
   <h2 id="theme-choice">Choose your Vibe</h2>
-  <button class ="theme1 button">sensory overload</button>
-  <button class ="theme2 button">invisibility</button>
-  <button class ="theme3 button">black lodge </button>
+  <button class ="theme1 button">You will fail!</button>
   </section>
   `)
   const theme1Button = document.querySelector('.theme1')
-  const theme2Button = document.querySelector('.theme2')
-  const theme3Button = document.querySelector('.theme3')
+  //const theme2Button = document.querySelector('.theme2')
+  //const theme3Button = document.querySelector('.theme3')
   theme1Button.addEventListener('click', buildGameScreen)
-  theme2Button.addEventListener('click', buildGameScreen)
-  theme3Button.addEventListener('click', buildGameScreen)
+  //theme2Button.addEventListener('click', buildGameScreen)
+  //theme3Button.addEventListener('click', buildGameScreen)
 }
 
 function buildGameScreen() {

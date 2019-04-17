@@ -12,11 +12,14 @@ class Game {
   startLoop(){
   
     const loop = () => {
-      if (Math.random() > 0.9) { // setting the probability  to 10% that a new platform is created 
+      if (Math.random() > 0.95) { // setting the probability  to 10% that a new platform is created 
         this.platforms.push(new Platforms(this.canvas))
-        console.log(this.platforms);
+        //console.log(this.platforms);
       }
       this.clearCanvas();
+      if (!this.player.jumping && !this.player.onPlatform){
+        this.player.currentFunction = this.player.playerFallDown;
+      }
       if (this.player.currentFunction) {
         this.player.currentFunction();
       }
@@ -50,7 +53,18 @@ class Game {
     } else if (!this.player.jumping && !this.player.onPlatform) {
     this.player.gravity = 0.5;
     } else if (this.player.jumping && !this.player.onPlatform) {
+    console.log("heyyyyyy girrrrrl")
      this.player.jumping = true;
+     let hitMyHead = false
+     this.platforms.forEach( (element) => {
+      if(this.player.checkIfUnderPlatform(element) && !hitMyHead){
+        this.player.hittingHead = true
+        hitMyHead = true
+      }
+     })
+     if(!hitMyHead){
+       this.player.hittingHead = false;
+     }
     }
     //this.removePlatformsFromArray();
   }
@@ -67,35 +81,39 @@ class Game {
       this.player.updateLives();
    }
   
-  //  if (this.player.lives === 0){
-  //      this.death === true;
-  //      this.gameOver();
-  //      }
+   if (this.player.lives === 0){
+       this.death === true;
+       this.gameOver();
+       }
   }
+
   setPlayerOnPlatform(){
     let testOne = false;
     this.platforms.forEach( (element) => {
       const isPlayerOnPlatform = this.player.checkIfOnTopOfPlatform(element);
       if(isPlayerOnPlatform) {
+
         testOne = true;
         this.player.doWhenOnTopOfPlatform(element);
-      } 
+      }else{
+        this.player.onPlatform = false
+      }
      });
      if(!testOne) {
        this.player.onPlatform = false;
      }
   }
 
-//   removePlatformsFromArray() {
-//    if(this.platforms.length > 0){
-//      this.platforms.forEach((element, index) => {
-//       const isOutsideOfCanvas = this.platforms.outsideOfCanvas(element);
-//       if(isOutsideOfCanvas) {
-//         this.platforms.splice(index, 1);
-//       }
-//      });
-//    } 
-//  }
+   removePlatformsFromArray() {
+    if(this.platforms.length > 0){
+      this.platforms.forEach((element, index) => {
+       const isOutsideOfCanvas = this.platforms.outsideOfCanvas(element);
+       if(isOutsideOfCanvas) {
+         this.platforms.splice(index, 1);
+       }
+      });
+    } 
+  }
 
    outsideOfCanvas(element) {
     oustsideLeft = element.x < 0 + element.randomWidth;
@@ -103,13 +121,12 @@ class Game {
     outsideRight = element.x > this.canvas.width - element.randomWidth;
     outsideBottom = lement.y > this.canvas.height - element.height;
     if (outsideLeft|| outsideTop|| outsideRight || outsideBottom){
-      console.log('outside');
+     // console.log('outside');
       return;
     }
   }
   
-
-  gameOver(buildGameOverScreen){
+ gameOver(buildGameOverScreen){
    this.buildGameOverScreen = buildGameOverScreen;
   }
 }
