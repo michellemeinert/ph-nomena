@@ -29,6 +29,7 @@ class Game {
       this.drawCanvas();
       this.updateCanvas();
       this.objectsColliding();
+      this.drawScore();
       //this.removePlatformsFromArray();
 
        if (this.death === false){
@@ -112,6 +113,11 @@ class Game {
        }
       });
     } 
+  }
+  drawScore() {
+    this.ctx.font = "40px Roboto Slab";
+    this.ctx.fillStyle = "#BA1200";
+    this.ctx.fillText("Score: " + this.player.score, 8, 45);
   }
 
   //  outsideOfCanvas(element) {
