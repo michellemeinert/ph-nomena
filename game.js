@@ -12,9 +12,9 @@ class Game {
   startLoop(){
   
     const loop = () => {
-      if (Math.random() > 0.95) { // setting the probability  to 10% that a new platform is created 
+      if (Math.random() > 0.95) { 
         this.platforms.push(new Platforms(this.canvas))
-        //console.log(this.platforms);
+       
       }
       this.clearCanvas();
       if (!this.player.jumping && !this.player.onPlatform){
@@ -53,7 +53,7 @@ class Game {
     } else if (!this.player.jumping && !this.player.onPlatform) {
     this.player.gravity = 0.5;
     } else if (this.player.jumping && !this.player.onPlatform) {
-    console.log("heyyyyyy girrrrrl")
+   // console.log("heyyyyyy girrrrrl")
      this.player.jumping = true;
      let hitMyHead = false
      this.platforms.forEach( (element) => {
@@ -88,20 +88,14 @@ class Game {
   }
 
   setPlayerOnPlatform(){
-    let testOne = false;
     this.platforms.forEach( (element) => {
       const isPlayerOnPlatform = this.player.checkIfOnTopOfPlatform(element);
       if(isPlayerOnPlatform) {
-
-        testOne = true;
         this.player.doWhenOnTopOfPlatform(element);
       }else{
         this.player.onPlatform = false
       }
      });
-     if(!testOne) {
-       this.player.onPlatform = false;
-     }
   }
 
    removePlatformsFromArray() {
@@ -121,7 +115,6 @@ class Game {
     outsideRight = element.x > this.canvas.width - element.randomWidth;
     outsideBottom = lement.y > this.canvas.height - element.height;
     if (outsideLeft|| outsideTop|| outsideRight || outsideBottom){
-     // console.log('outside');
       return;
     }
   }

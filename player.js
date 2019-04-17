@@ -16,9 +16,7 @@ class Player {
    this.direction = 0;
    this.goLeft = false;
    this.goRight = false;
-   //this.friction = 0.9;
    this.currentFunction = null;
-   //this.maxJumpHeight = 17;
    this.onPlatform = false;
    this.score = 0;
    this.hittingHead = false
@@ -33,7 +31,6 @@ class Player {
   }
 
   playerJumpUp(){
-   // this.jumping = true;
     if (this.jumping && !this.hittingHead) {
       this.velocityY = (-5 - this.gravity);
       this.y += this.velocityY;
@@ -51,37 +48,21 @@ class Player {
    }
 
   playerGoLeft(){
-   // if (!this.goRight && this.goLeft) {
     this.velocityX += 0.2;
     this.x -= this.velocityX;
-   // this.goLeft = true;
-   
-   // }
   }
 
   playerGoRight(){
- // if (!this.goLeft && this.goRight) {
     this.velocityX += 0.2;
     this.x += this.velocityX;
-  //  this.goRight = true;
-   
-  //  }
-  }
+ }
   //using this to stop the player from moving after releasing the buttons
   playerResetPostion(){
     if (!this.goLeft || !this.goRight) {
       this.velocityX = 0;
    } 
   }
-  
-  //  playerApplyFriction(){
-  //    if (this.goLeft || this.goRight) {
-  //    this.velocityX *= this.friction;
-  //    this.velocityY *= this.friction;
-  //    this.x += this.velocityX;
-  //    this.y += this.velocityY;
-  //    }
-  // }
+
    updateLives(){
     this.lives -= 1;
    }
@@ -105,9 +86,9 @@ class Player {
         this.score += 1;
         this.y = platform.y-platform.height/2-this.size+1
        
-      //console.log('collision w platform!!!');
+     
        
-      // console.log(this.score);
+       console.log(this.score);
        return true;
      }
      
@@ -120,12 +101,12 @@ class Player {
     const rightCollision = this.x - this.radius < platform.x + platform.randomWidth/2;
     
     if (topCollision && leftCollision && rightCollision && bottomCollion){
-     return true
+     return true;
     }
  }
    doWhenOnTopOfPlatform(platform){
     if (this.onPlatform) {
-      this.x -= platform.speed;
+       this.x -= platform.speed;
        this.velocityY = 0;
        this.gravity = 0;
       

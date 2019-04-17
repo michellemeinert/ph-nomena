@@ -15,11 +15,7 @@ function buildStartScreen () {
   </section>
   `)
   const theme1Button = document.querySelector('.theme1')
-  //const theme2Button = document.querySelector('.theme2')
-  //const theme3Button = document.querySelector('.theme3')
   theme1Button.addEventListener('click', buildGameScreen)
-  //theme2Button.addEventListener('click', buildGameScreen)
-  //theme3Button.addEventListener('click', buildGameScreen)
 }
 
 function buildGameScreen() {
@@ -31,7 +27,6 @@ function buildGameScreen() {
  `)
 
  //setTimeout(buildGameOverScreen, 3000000);
- // setting the canvas to the same dynamic height and width as parent container 
  const gameContainer = document.querySelector('.game-container');
  const width = gameContainer.offsetWidth;
  const height = gameContainer.offsetHeight;
@@ -49,16 +44,15 @@ function buildGameScreen() {
   if (event.keyCode === 37) {
     game.player.goLeft = true;
     game.player.playerGoLeft();
-   //game.player.playerApplyFriction();
   } else if (event.keyCode === 39) {
     game.player.goRight = true;
     game.player.playerGoRight();
-    //game.player.playerApplyFriction();
+
     }
  });
   document.addEventListener('keyup',  () => {
    if (event.keyCode === 37 || event.keyCode === 39){
-    //game.player.playerApplyFriction();
+
     game.player.goLeft = false;
     game.player.goRight = false;
     game.player.playerResetPostion();
@@ -67,25 +61,15 @@ function buildGameScreen() {
  document.addEventListener('keydown', () => {
    if (event.keyCode === 32) {
      game.player.jumping = true;
-     
-     //if (game.player.jumping) {
      game.player.currentFunction = game.player.playerJumpUp;
-     //}
-     //game.player.playerJumpUp();
    }
  });
  document.addEventListener('keyup', () => {
   if (event.keyCode === 32) {
     game.player.jumping = false; 
-   
-    // if (game.player.onPlatform && !game.player.jumping)  {
-    // ////
-    // } 
     if (!game.player.jumping && !game.player.onPlatform){
     game.player.currentFunction = game.player.playerFallDown;
   }
-  //game.player.playerFallDown();
-  //  game.player.currentFunction = game.player.playerFallDown;
   }
 });
  
