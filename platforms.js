@@ -19,6 +19,7 @@ class Platforms {
    }
    
    platformsMovement(){
+      this.speed += 0.01;
       this.x += this.direction * this.speed;
 
   }
@@ -35,6 +36,5 @@ class Platforms {
    increaseSpeed() {
      this.speed += 0.1;
   }
-  
  }
  

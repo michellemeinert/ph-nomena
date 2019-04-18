@@ -6,38 +6,44 @@ function main() {
  main.innerHTML = html;
  }
 
-// let myStorage = window.localStorage;
-// function setUsernames (name) {
-//   let usernames = [];
-//   usernames.push(name);
-//   let usernamesString = JSON.stringify(usernames);
-//   return usernamesString;
-// }
-
-// function setHighscore (score) {
-//  let currentHighscore = game.player.score;
-//  if (currentHighscore < score) {
-//    currentHighscore = score;
+//  let myStorage = window.localStorage;
+ 
+//  let usernames = [];
+//  function setUsernames (name) {
+//    usernames.push(name);
+//    let usernamesString = JSON.stringify(usernames);
+//    return usernamesString;
 //  }
-//  return currentHighscore;
-// }
-// myStorage.setItem('names', setUsernames());
-// myStorage.setItem('highscore', setHighscore());
+
+//  let scores = [];
+//  function setScores (score) {
+//    scores.push(score);
+//    let scoresString = JSON.stringify(scores);
+//    return scoresString;
+//  }
+
+//  function setHighscore (score) {
+//   let currentHighscore = scores[0];
+//   if (currentHighscore < score) {
+//     currentHighscore = score;
+//   }
+//   return currentHighscore;
+//  }
+
+//  myStorage.setItem('scores', setScores());
+//  myStorage.setItem('names', setUsernames());
+//  myStorage.setItem('highscore', setHighscore());
 
 
 function buildStartScreen () {
   buildScreens(`
   <section id="screen-sections">
   <h1 id="game-headings">Phänomena</h1>
-  <label for="name">Username: </label>
-  <input type="text" id="name" name="name" required>
-
  <button class ="start-button buttons"><p class="buttonsParagraph">You will fail!</p></button>
   </section>
   `)
   
-  // const username = document.getElementById('name');
-  // setUsernames(username);
+
 
   const startButton = document.querySelector('.start-button')
   startButton.addEventListener('click', buildGameScreen)
