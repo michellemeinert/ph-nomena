@@ -1,14 +1,18 @@
 # Phänomena
 
 ## Description
+Phänomena is a game designed to confuse the Users, play with their perceptions and make them question the purpose of the game.
 
 
 
 ## MVP (DOM - CANVAS)
-Canvas, the player can move up and down to avoid crashing into obstacles.
+Canvas, 
+Player can move left, right and jump to land on Platforms and collect points. 
 
 
 ## Backlog
+- score
+- optical 'illusions'
 - background music for fun times 
 
 
@@ -18,43 +22,63 @@ Game()
  - this.canvas;
  - this.ctx
  - this.player
- - this.obstacles
+ - this.platforms
  - this.death
+ - this.audio
  - loop()
  - clearCanvas()
  - updateCanvas()
  - drawCanvas()
- - collisions()
- - death()
+ - drawScore()
+ - objectsColliding()
+ - setPlayerOnPlatform()
+ - gameOver()
+ 
 
 ### player.js
 Player()
  - this.lives
  - this.canvas
  - this.ctx
- - this.speed
+ - this.velocityX
+ - this.velocityY
+ - this.gravity
+ - this.goLeft
+ - this.goRight
+ - this.currentFunction
+ - this.onPlatform
+ - this.score
+ - this.hittingHead
  - this.size
+ - this.radius
  - this.x
  - this.y
- - this.direction
- - draw()
- - update()
- - direction()
- - lives()
- - collision()
+ - drawPlayer()
+ - updateLives()
+ - playerJumpUp()
+ - playerFallDown()
+ - playerGoLeft()
+ - playerGoRight()
+ - playerResetPosition()
+ - checkIfOnTopOfPlatform()
+ - checkIfUnderPlatform()
+ - doWhenOnTopOfPlatform()
+ - collisionsWithWalls()
 
-### obstacles.js
-Obstacles()
- - this.minWidth
- - this.maxHeight
+### platforms.js
+Platforms()
+ - this.randomWidth
+ - this.height
  - this.speed
  - this.direction
  - this.canvas
  - this.ctx
  - this.x
  - this.y
- - draw()
- - update()
+ - drawPlatforms()
+ - platformsMovement()
+ - outsideOfCanvas()
+ - increaseSpeed()
 
 
 ## States y States Transitions
@@ -76,21 +100,16 @@ Obstacles()
 - Player: construct obj
 - Player: create movement (direction) function
 - Main: test player movement with eventListener
-- Obstacle: construct obj
-- Obstacle: calculating random sizes & positions for the layout 
-- Player: create and test(!!) the checkCollisions function
-  
-
-## Links
-...tbd
-
-### Trello
-...tbd
+- Platforms: construct obj
+- Platforms: calculating positions for the layout 
+- Player: create and test(!!) the collisions with Platform
+- Platform: collisons with wall
+- Game: add audio
 
 
-### Git
+### Demo 
 https://michellemeinert.github.io/ph-nomena/.
 
 
 ### Slides
-...tbd
+https://docs.google.com/presentation/d/1jj3M7IuebMlzefpdRHE2_R-L1VQQv3OX_064HvEppwU/edit?usp=sharing

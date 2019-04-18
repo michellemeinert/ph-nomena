@@ -113,6 +113,7 @@ function buildGameOverScreen() {
   </section>
   `)
   const resetButton = document.querySelector('.restart-button')
+
   resetButton.addEventListener('click', buildGameScreen)
 }
 buildStartScreen();
