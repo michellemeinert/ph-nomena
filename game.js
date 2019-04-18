@@ -13,7 +13,7 @@ class Game {
   startLoop(){
   
     const loop = () => {
-      if (Math.random() > 0.95) { 
+      if (Math.random() > 0.93) { 
         this.platforms.push(new Platforms(this.canvas))
        }
 
@@ -52,6 +52,8 @@ class Game {
 
     this.platforms.forEach( (platforms) => {
       platforms.platformsMovement();
+      setTimeout(platforms.increaseSpeed(), 10000);
+      
     });
     if (!this.player.jumping){
     this.setPlayerOnPlatform();

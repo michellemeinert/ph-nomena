@@ -4,10 +4,10 @@ class Platforms {
    constructor (canvas) {
      this.canvas = canvas;
      this.ctx = canvas.getContext('2d');
-     this.randomWidth = 150;
-     this.height = 10;
+     this.randomWidth = 170;
+     this.height = 18;
      this.size = this.randomWidth * this.height;
-     this.speed = 6;
+     this.speed = 10;
      this.direction = -1;
      this.x = this.canvas.width;
      this.y = Math.floor(Math.random()*this.canvas.height);
@@ -30,6 +30,10 @@ class Platforms {
     if (outsideLeft|| outsideTop|| outsideRight || outsideBottom){
       return;
     }
+  }
+
+   increaseSpeed() {
+     this.speed += 0.1;
   }
   
  }
