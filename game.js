@@ -7,7 +7,10 @@ class Game {
     this.player = new Player(this.canvas);
     this.platforms = [];
     this.death = false;
-    this.audio = new Audio('./Daft Punk - Veridis Quo.mp3');
+    this.audio = new Audio('./sounds/Daft Punk - Veridis Quo.mp3');
+    this.sound1 = new Audio('./sounds/footsteps1.mp3');
+    this.sound2 = new Audio('./sounds/efan.mp3');
+
   }
 
   startLoop(){
@@ -95,6 +98,8 @@ class Game {
        this.death = true;
        this.buildGameOverScreen();
        this.audio.pause();
+       this.sound1.pause();
+       this.sound2.pause();
        }
   }
 
@@ -103,6 +108,12 @@ class Game {
       const isPlayerOnPlatform = this.player.checkIfOnTopOfPlatform(element);
       if(isPlayerOnPlatform) {
         this.player.doWhenOnTopOfPlatform(element);
+        if (Math.random() > 0.99) { 
+          this.sound1.play();
+         }
+        if (Math.random() > 0.98) { 
+          this.sound2.play();
+         }
       } else {
         this.player.onPlatform = false
       }
