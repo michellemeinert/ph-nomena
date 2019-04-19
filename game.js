@@ -10,6 +10,7 @@ class Game {
     this.audio = new Audio('./sounds/Daft Punk - Veridis Quo.mp3');
     this.sound1 = new Audio('./sounds/footsteps1.mp3');
     this.sound2 = new Audio('./sounds/efan.mp3');
+    this.sound3 = new Audio('./sounds/ghost02.mp3');
 
   }
 
@@ -71,6 +72,9 @@ class Game {
       if(this.player.checkIfUnderPlatform(element) && !hitMyHead){
         this.player.hittingHead = true
         hitMyHead = true
+        if (Math.random() > 0.99) { 
+          this.sound3.play();
+         }
       }
      })
      if(!hitMyHead){
@@ -100,6 +104,7 @@ class Game {
        this.audio.pause();
        this.sound1.pause();
        this.sound2.pause();
+       this.sound3.pause();
        }
   }
 
